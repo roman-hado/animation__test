@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+html, body {
+  overflow: hidden;
+}
+
 .banner {
   position: fixed;
   top: 0;
