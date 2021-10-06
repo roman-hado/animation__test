@@ -69,7 +69,7 @@
       } else if (i % 2 !== 0) {
         gsap.fromTo(".banner__black-bg", { yPercent: 0 }, { yPercent: -100, duration: 2, ease: 'circ' });
       }
-    }, 1000);
+    }, 1500);
 
     const onScrollUp = throttle(() => {
       if (i % 2 === 0) {
@@ -79,7 +79,7 @@
       }
 
       i++;
-    }, 1000);
+    }, 1500);
 
     window.addEventListener('wheel', (e) => {
       if (e.deltaY > 0) {
