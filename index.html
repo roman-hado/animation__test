@@ -24,7 +24,7 @@
       loop 
       preload
     >
-      <!-- <source src="https://thenewcode.com/assets/videos/lake.webm"> -->
+      <source src="https://thenewcode.com/assets/videos/lake.webm">
     </video>
 
     <div class="banner__bg--wrapper">
@@ -47,8 +47,7 @@
 
   <script type="text/javascript">
     let now = Date.now();
-    let scrollValue = window.scrollY;
-    let i = 1;
+    let i = 0;
 
     function throttle(cb, interval) {
         return function() {
@@ -64,21 +63,41 @@
     const onScrollDown = throttle(() => {
       i++;
 
-      if (i % 2 === 0) {
+      if (i === 1) {
+        gsap.fromTo(".banner__video", {opacity: 0}, {opacity: 1, duration: 1});
+      
+        gsap.fromTo(".banner__wrapper", {opacity: 1}, {opacity: 0, duration: 1});
+      } else if (i === 2) {
+        gsap.fromTo(".banner__wrapper", {opacity: 0}, {opacity: 1, duration: 1});
+    
         gsap.fromTo(".banner__black-bg", { yPercent: 100 }, { yPercent: 0, duration: 2, ease: 'circ' });
-      } else if (i % 2 !== 0) {
+      
+        gsap.fromTo(".banner__video", {opacity: 1}, {opacity: 0, duration: 1});
+      } else if (i === 3) {
         gsap.fromTo(".banner__black-bg", { yPercent: 0 }, { yPercent: -100, duration: 2, ease: 'circ' });
+
+        i = 0;
       }
     }, 1500);
 
     const onScrollUp = throttle(() => {
-      if (i % 2 === 0) {
-        gsap.fromTo(".banner__black-bg", { yPercent: 0 }, { yPercent: 100, duration: 2, ease: 'circ' });
-      } else if (i % 2 !== 0) {
-        gsap.fromTo(".banner__black-bg", { yPercent: -100 }, { yPercent: 0, duration: 2, ease: 'circ' });
-      }
-
       i++;
+
+      if (i === 1) {
+        gsap.fromTo(".banner__video", {opacity: 0}, {opacity: 1, duration: 1});
+      
+        gsap.fromTo(".banner__wrapper", {opacity: 1}, {opacity: 0, duration: 1});
+      } else if (i === 2) {
+        gsap.fromTo(".banner__wrapper", {opacity: 0}, {opacity: 1, duration: 1});
+    
+        gsap.fromTo(".banner__black-bg", { yPercent: -100 }, { yPercent: 0, duration: 2, ease: 'circ' });
+      
+        gsap.fromTo(".banner__video", {opacity: 1}, {opacity: 0, duration: 1});
+      } else if (i === 3) {
+        gsap.fromTo(".banner__black-bg", { yPercent: 0 }, { yPercent: 100, duration: 2, ease: 'circ' });
+
+        i = 0;
+      }
     }, 1500);
 
     window.addEventListener('wheel', (e) => {
